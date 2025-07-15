@@ -10,13 +10,22 @@ const userRoutes = require("./routes/user.route");
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: "http://localhost:5173", // frontend URL
-  credentials: true,
-}));
+// Middleware setup
 app.use(express.json());
 app.use(cookieParser());
+
+// CORS setup for handling cross-origin requests
+app.use(
+  cors({
+    origin: ["https://project-mini-mart.vercel.app", "http://localhost:5173"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    credentials: true,
+    optionsSuccessStatus: 204,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+// Allow preflight OPTIONS for all routes
+app.options('*', cors());
 
 // MongoDB connection
 const connectDB = async () => {
