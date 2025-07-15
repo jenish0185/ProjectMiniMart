@@ -92,6 +92,7 @@ const LoginPage = () => {
         toast.success("Welcome back! Login successful")
         // Redirect logic
         const from = location.state?.from?.pathname || "/" // Get the referrer or default to "/"
+        console.log("Redirecting to:", from)
         navigate(from, { replace: true }) // Navigate to the referrer or home
       } else {
         setError(data.message || "Login failed")
