@@ -7,7 +7,9 @@ import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { Navbar } from './components/Navbar';
+import {Footer} from './components/footer'; 
 import { AppProvider } from './context/AppContext'; // ✅ import AppProvider
+import { Footer } from "react-day-picker";
 // import Footer from "./components/Footer";
 
 export default function App() {
@@ -24,6 +26,7 @@ export default function App() {
           <Route path="/signup" element={<SignupPage />} />
           {/* Add more routes as needed */}
         </Routes>
+        <Footer />
         {/* <Footer /> */}
       </BrowserRouter>
     </AppProvider>
