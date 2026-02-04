@@ -2,65 +2,74 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    fullName: {
+    name: {
       type: String,
       required: true,
-      trim: true,
     },
-
     email: {
       type: String,
       required: true,
       unique: true,
-      lowercase: true,
-      trim: true,
+      match: /.+\@.+\..+/,
     },
-
+    phoneNumber: {
+      type: String,
+    },
     password: {
       type: String,
-      required: true,
     },
-
+    profilePic: {
+      type: String,
+    },
+    googleId: {
+      type: String,
+    },
+    bio: {
+      type: String,
+      default: "No bio provided",
+    },
     role: {
       type: String,
-      enum: ["customer", "admin"],
-      default: "customer",
+      enum: ["individual", "shelter", "admin"],
+      required: true,
     },
-
-    phone: {
-      type: String,
-    },
-
-    address: {
-      type: String,
-    },
-
-    avatar: {
-      type: String, // URL to image (e.g., stored in Cloudinary or local uploads)
-    },
-
-    cart: [{
-      product: {
+    pets: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: "Pet",
       },
-      quantity: {
-        type: Number,
-        default: 1,
+    ],
+    adoptedPets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Pet",
       },
-    }],
-
-    wishlist: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product',
-    }],
-
-    isActive: {
+    ],
+    adoptionRequests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AdoptionRequest",
+      },
+    ],
+    isVerified: {
       type: Boolean,
-      default: true,
-    }
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+    },
+    verificationTokenExpiry: {
+      type: Date,
+    },
+    verificationCode: {
+      type: String,
+    },
+    verificationCodeExpires: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
 
+// Export the User model
 module.exports = mongoose.model("User", userSchema);

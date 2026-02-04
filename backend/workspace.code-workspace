@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../tailmate"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Final Year Project"
+	}
+}
