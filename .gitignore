@@ -1,0 +1,12 @@
+# Environment variables
+.env
+backend/.env
+
+# Secret files
+backend/client_secret_*.json
+
+# Node modules
+node_modules/
+
+# Build files
+dist/
